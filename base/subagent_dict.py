@@ -15,6 +15,9 @@ from dotenv import load_dotenv, find_dotenv
 # | middleware    | list[Middleware]     | 可选        | 自定义中间件，用于实现日志记录、速率限制、自定义行为等功能   | 不继承主代理的，需自定义                 |
 # | interrupt_on  | dict[str, bool]      | 可选        | 为特定工具配置 “人机协作流程（HITL）”；需搭配检查点（checkpointer）使用 | -                                        |
 # | skills        | list[str]            | 可选        | 技能文件的来源路径（如 `["/skills/research/"]`），用于加载子代理专属技能 | -                                        |
+api更新了，添加了文件权限和响应格式化：
+response_format  |	ResponseFormat    | 可选      | 子代理的结构化输出模式。设置后，父代理将以 JSON 格式接收子代理的结果，而不是自由格式的文本。接受 Pydantic 模型、 ToolStrategy(...) 、 ProviderStrategy(...) 或原始模式类型。| - |
+permissions      |  list[FilesystemPermission] | 可选 | 子代理的文件系统权限规则 。设置后，将完全替换父代理的权限。 | 默认情况下继承自主代理。|
 
 注意上述dict类型定义的时候，除了model之外子agent可以继承主agent（主定义子不定义默认使用相同的模型），其他的都是子agent独立的。
 这样设计的好处：
