@@ -61,3 +61,18 @@ items = store.search(("filesystem",))
 for item in items:
     print(f"Key: {item.key}")
     print(f"Value: {item.value}")
+
+# === 写入记忆 (Thread A) ===
+# Agent 回复: 已保存你的信息到 `user_profile.txt`：
+# - 姓名：大风子
+# - 幸运数字：7
+#
+# === 读取记忆 (Thread B) ===
+# Agent (Thread B) 回复: 根据 `user_profile.txt` 的内容：
+#
+# - **你的名字**：大风子
+# - **你的幸运数字**：7
+#
+# === 验证 Store 数据 ===
+# Key: /user_profile.txt
+# Value: {'content': '姓名：大风子\n幸运数字：7\n', 'encoding': 'utf-8', 'created_at': '2026-07-04T15:14:12.312534+00:00', 'modified_at': '2026-07-04T15:14:12.312534+00:00'}
